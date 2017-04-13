@@ -18,8 +18,8 @@ public class FileUtil {
 	public static String getContent(String filename) throws MalformedURLException, IOException {
 
 		StringBuilder content = new StringBuilder();
-		//URL url = new URL("https://nareshkumar-h.github.io/revature-curriculum/json/" + filename);
-		URL url = new URL("http://localhost/revature-curriculum/json/" + filename);
+		URL url = new URL("https://nareshkumar-h.github.io/revature-curriculum/json/" + filename);
+		//URL url = new URL("http://localhost/revature-curriculum/json/" + filename);
 
 		// Read all the text returned by the server
 		BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
