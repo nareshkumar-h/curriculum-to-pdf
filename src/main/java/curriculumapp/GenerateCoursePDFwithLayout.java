@@ -49,6 +49,38 @@ public class GenerateCoursePDFwithLayout {
 		document.add(cparagraph);
 		
 	}
+	
+	private static void addCourseObjectives(Document document, Course course) throws IOException {
+		String degreeTitle = "Course Objectives:";
+		
+		List<String> courseObjectivesList = course.getCourseObjectivesList();
+		System.out.println("Objectives:"  +  courseObjectivesList);
+		if (! courseObjectivesList.isEmpty()) {
+		
+			Paragraph cparagraph = new Paragraph();
+			cparagraph.setAlignment(Alignment.Center);
+			cparagraph.addText(degreeTitle, 12, PDType1Font.TIMES_BOLD);
+
+			
+			document.add(cparagraph);
+			
+			int i = 1;
+			for (String task : courseObjectivesList) {
+
+				String objectiveName = "" + i++ + ". " + task;
+
+				Paragraph tparagraph = new Paragraph();
+				tparagraph.setLineSpacing(1.5f);
+				tparagraph.addText(objectiveName, 10, PDType1Font.TIMES_ROMAN);
+		
+				cparagraph.setLineSpacing(2);
+				document.add(tparagraph);
+
+			}
+
+		}
+				
+	}
 
 	private static void createPage(Document document, Course course) throws IOException {
 
@@ -61,6 +93,8 @@ public class GenerateCoursePDFwithLayout {
 
 		if (course.getCourseType().equals("T")) {
 
+			addCourseObjectives(document, courseDetails);
+			cparagraph.setLineSpacing(2);
 			createUnitSection(document, courseDetails);
 		} else if (course.getCourseType().equals("L")) {
 			createLabSection(document, courseDetails);

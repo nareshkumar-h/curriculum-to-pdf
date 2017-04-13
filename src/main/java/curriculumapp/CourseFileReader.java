@@ -63,6 +63,7 @@ public class CourseFileReader {
 				String title = (String) courseObj.get("title");
 				String code = (String) courseObj.get("code");
 				String courseType = (String) courseObj.get("type");
+				
 				Course course = new Course(code, title, courseType);
 				courseList.add(course);
 			}
@@ -99,6 +100,14 @@ public class CourseFileReader {
 			//// System.out.println(title);
 			if (course.getCourseType().equals("T")) {
 				JSONArray modules = (JSONArray) jsonObject.get("modules");
+				JSONArray courseObjectives = (JSONArray) jsonObject.get("course_objectives");
+				if (courseObjectives != null ){
+					
+					for (Object c : courseObjectives) {
+						course.addCourseObjective(c.toString());
+					}
+				}
+				
 				setUnits(course, modules);
 			}else if (course.getCourseType().equals("L")) {
 				JSONArray tasks = (JSONArray) jsonObject.get("tasks");

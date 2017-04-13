@@ -1,5 +1,6 @@
 package curriculumapp;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -13,6 +14,21 @@ public class Course {
 
 	private String code;
 	
+	
+	private List<String> courseObjectivesList  = new ArrayList<String>();
+	
+	public List<String> getCourseObjectivesList() {
+		return courseObjectivesList;
+	}
+
+	public void setCourseObjectivesList(List<String> courseObjectivesList) {
+		this.courseObjectivesList = courseObjectivesList;
+	}
+	
+	public void addCourseObjective(String objective) {
+		this.courseObjectivesList.add(objective);
+	}
+
 	public Course(String code, String title, String courseType) {
 		super();
 		this.code = code;
